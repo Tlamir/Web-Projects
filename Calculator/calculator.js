@@ -20,7 +20,7 @@ app.post("/bmiCalculator.html",function (req,res) {
     var height= Number(req.body.height);
 
     var BMI= weight/(height*height);
-    res.send("Your BMI is --> "+BMI);
+    res.send("Your BMI is --> "+ Math.round(BMI));
 })
 app.listen(3000,function () {
     console.log("server is running on 3000 port");
