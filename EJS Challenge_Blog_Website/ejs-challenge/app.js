@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+let posts=[];
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -21,6 +21,32 @@ app.use(express.static("public"));
 
 
 
+
+
+app.get("/", (req, res) => {
+  res.render("home",{startingContent :homeStartingContent });
+  console.log(posts);
+})
+
+app.get("/about", (req, res) => {
+  res.render("about",{aboutStartingContent :aboutContent });
+})
+
+app.get("/contact", (req, res) => {
+  res.render("contact",{contactStartingContent :contactContent });
+})
+
+
+app.get("/compose", (req, res) => {
+  res.render("compose");
+})
+
+app.post('/compose', function (req, res) {
+ const post = {title:req.body.postTitle, content:req.body.postBody};
+posts.push(post);
+res.redirect("/");
+
+});
 
 
 
